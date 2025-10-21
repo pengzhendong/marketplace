@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+  <script>
+    const params = new Proxy(new URLSearchParams(window.location.search), {
+      get: (searchParams, prop) => searchParams.get(prop),
+    });
+    const [pub, ext] = params.itemName.split('.', 2);
+    const version = params.version || 'latest';
+    window.location.replace(`https://marketplace.visualstudio.com/_apis/public/gallery/publishers/${pub}/vsextensions/${ext}/${version}/vspackage`);
+  </script>
+</body>
+
+</html>
